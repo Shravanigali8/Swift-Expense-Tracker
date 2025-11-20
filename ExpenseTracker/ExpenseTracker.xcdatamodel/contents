@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ExpenseLog" representedClassName="ExpenseLog" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="isGroupExpense" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="expenses" inverseEntity="Group"/>
+        <relationship name="paidBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="expensesPaid" inverseEntity="User"/>
+        <relationship name="participants" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExpenseParticipant" inverseName="expense" inverseEntity="ExpenseParticipant"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="expensesPaid" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseLog" inverseName="paidBy" inverseEntity="ExpenseLog"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="members" inverseEntity="Group"/>
+        <relationship name="debtsOwed" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Debt" inverseName="owedBy" inverseEntity="Debt"/>
+        <relationship name="debtsOwedTo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Debt" inverseName="owedTo" inverseEntity="Debt"/>
+        <relationship name="expenseParticipants" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExpenseParticipant" inverseName="user" inverseEntity="ExpenseParticipant"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="groups" inverseEntity="User"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExpenseLog" inverseName="group" inverseEntity="ExpenseLog"/>
+        <relationship name="debts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Debt" inverseName="group" inverseEntity="Debt"/>
+    </entity>
+    <entity name="ExpenseParticipant" representedClassName="ExpenseParticipant" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0"/>
+        <relationship name="expense" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpenseLog" inverseName="participants" inverseEntity="ExpenseLog"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="expenseParticipants" inverseEntity="User"/>
+    </entity>
+    <entity name="Debt" representedClassName="Debt" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0"/>
+        <attribute name="isSettled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="settledAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="debts" inverseEntity="Group"/>
+        <relationship name="owedBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="debtsOwed" inverseEntity="User"/>
+        <relationship name="owedTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="debtsOwedTo" inverseEntity="User"/>
+    </entity>
+    <elements>
+        <element name="ExpenseLog" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="User" positionX="9" positionY="9" width="128" height="118"/>
+        <element name="Group" positionX="9" positionY="9" width="128" height="118"/>
+        <element name="ExpenseParticipant" positionX="9" positionY="9" width="128" height="118"/>
+        <element name="Debt" positionX="9" positionY="9" width="128" height="118"/>
+    </elements>
+</model>
