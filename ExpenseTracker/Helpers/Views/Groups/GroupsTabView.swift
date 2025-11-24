@@ -2,8 +2,8 @@
 //  GroupsTabView.swift
 //  ExpenseTracker
 //
-//  Created by ExpenseTracker on 2024.
-//
+
+
 
 import SwiftUI
 import CoreData
@@ -85,4 +85,3 @@ struct GroupsTabView_Previews: PreviewProvider {
         GroupsTabView()
     }
 }
-

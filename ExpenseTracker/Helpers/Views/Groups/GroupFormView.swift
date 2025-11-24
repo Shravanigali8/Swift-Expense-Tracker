@@ -126,4 +126,3 @@ struct GroupFormView_Previews: PreviewProvider {
         return GroupFormView(context: stack.viewContext)
     }
 }
-

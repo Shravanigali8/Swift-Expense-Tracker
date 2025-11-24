@@ -2,8 +2,6 @@
 //  GroupDetailView.swift
 //  ExpenseTracker
 //
-//  Created by ExpenseTracker on 2024.
-//
 
 import SwiftUI
 import CoreData
@@ -576,4 +574,3 @@ struct GroupDetailView_Previews: PreviewProvider {
         GroupDetailView(group: Group())
     }
 }
-
