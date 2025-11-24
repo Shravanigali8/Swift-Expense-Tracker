@@ -2,7 +2,7 @@
 //  Debt+Extension.swift
 //  ExpenseTracker
 //
-//  Created by ExpenseTracker on 2024.
+// Created by Group Cluster
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  File.swift
 //
 //
-//  Created by András Samu on 2019. 07. 19..
+// Created by Group Cluster
 //
 
 import Foundation
